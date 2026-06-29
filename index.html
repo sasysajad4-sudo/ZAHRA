@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>برای عزیزترینم</title>
 
@@ -19,12 +19,12 @@ overflow:hidden;
 
 body{
 
-background-image:url("1-anrzhy-hsthay-chyst (2).png");
+background-image:url("./1782707100560.png");
 
 background-repeat:no-repeat;
 background-position:center center;
 
-/* کل تصویر دیده شود */
+/* کل تصویر نمایش داده شود */
 background-size:contain;
 
 background-color:black;
@@ -32,24 +32,17 @@ background-color:black;
 position:relative;
 }
 
-
-/* ناحیه کلیک روی قسمت پیام صوتی */
-
 #play-area{
 
 position:absolute;
 
-/* محل قسمت پیام صوتی */
 top:54%;
 left:50%;
 
 transform:translate(-50%,-50%);
 
 width:65%;
-height:65px;
-
-/* برای تست موقت */
-border:2px solid transparent;
+height:60px;
 
 cursor:pointer;
 
@@ -62,32 +55,22 @@ cursor:pointer;
 <body>
 
 <audio id="music">
-
-<source src="Gin - Vinak.mp3" type="audio/mpeg">
-
+<source src="./Gin - Vinak.mp3" type="audio/mpeg">
 </audio>
 
-
 <div id="play-area"></div>
-
 
 <script>
 
 const music=document.getElementById("music");
-const playArea=document.getElementById("play-area");
+const area=document.getElementById("play-area");
 
-playArea.addEventListener("click",()=>{
+area.addEventListener("click",()=>{
 
 if(music.paused){
-
 music.play();
-
-}
-
-else{
-
+}else{
 music.pause();
-
 }
 
 });
