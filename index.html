@@ -20,29 +20,22 @@ overflow:hidden;
 body{
 
 background-image:url("1782707100560.png");
-
 background-repeat:no-repeat;
 background-position:center center;
-
-/* کل عکس نمایش داده شود */
 background-size:contain;
-
 background-color:black;
 
 position:relative;
 
 }
 
-
-/* قسمت کلیک روی پیام صوتی */
-
 #play-area{
 
 position:absolute;
 
-/* بالا تر و چپ تر */
-top:51%;
-left:46%;
+/* بیشتر بالا و بیشتر چپ */
+top:47%;
+left:41%;
 
 transform:translate(-50%,-50%);
 
@@ -73,13 +66,9 @@ const area=document.getElementById("play-area");
 area.addEventListener("click",()=>{
 
 if(music.paused){
-
 music.play();
-
 }else{
-
 music.pause();
-
 }
 
 });
