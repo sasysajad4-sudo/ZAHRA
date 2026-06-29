@@ -24,7 +24,7 @@ background-image:url("1782707100560.png");
 background-repeat:no-repeat;
 background-position:center center;
 
-/* نمایش کامل عکس */
+/* کل عکس نمایش داده شود */
 background-size:contain;
 
 background-color:black;
@@ -33,12 +33,16 @@ position:relative;
 
 }
 
+
+/* قسمت کلیک روی پیام صوتی */
+
 #play-area{
 
 position:absolute;
 
-top:54%;
-left:50%;
+/* بالا تر و چپ تر */
+top:51%;
+left:46%;
 
 transform:translate(-50%,-50%);
 
@@ -64,14 +68,18 @@ cursor:pointer;
 <script>
 
 const music=document.getElementById("music");
+const area=document.getElementById("play-area");
 
-document.getElementById("play-area")
-.addEventListener("click",function(){
+area.addEventListener("click",()=>{
 
 if(music.paused){
+
 music.play();
+
 }else{
+
 music.pause();
+
 }
 
 });
