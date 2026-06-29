@@ -1,28 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>برای عزیزترینم</title>
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+body{
+
+background-image:url("1-anrzhy-hsthay-chyst (2).png");
+
+/* کل تصویر نمایش داده شود */
+background-size:contain;
+
+background-repeat:no-repeat;
+background-position:center;
+background-color:black;
+
+position:relative;
+}
+
+
+/* جای پلیر روی قسمت "پیام صوتی" */
+
+audio{
+
+position:absolute;
+
+/* این اعداد را بسته به محل دقیق تغییر بده */
+top:62%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:62%;
+
+opacity:.85;
+
+}
+
+</style>
+</head>
+
 <body>
 
-<audio id="music">
-    <source src="Gin - Vinak.mp3" type="audio/mpeg">
+<audio controls>
+<source src="Gin - Vinak.mp3" type="audio/mpeg">
 </audio>
 
-<!-- دکمه نامرئی روی قسمت پیام صوتی -->
-<div id="play-area"></div>
-
-<script>
-
-const music = document.getElementById("music");
-const area = document.getElementById("play-area");
-
-area.onclick = ()=>{
-
-if(music.paused){
-    music.play();
-}
-else{
-    music.pause();
-}
-
-}
-
-</script>
-
 </body>
+</html>
