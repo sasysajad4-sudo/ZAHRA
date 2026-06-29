@@ -19,17 +19,18 @@ overflow:hidden;
 
 body{
 
-background-image:url("./1782707100560.png");
+background-image:url("1782707100560.png");
 
 background-repeat:no-repeat;
 background-position:center center;
 
-/* کل تصویر نمایش داده شود */
+/* نمایش کامل عکس */
 background-size:contain;
 
 background-color:black;
 
 position:relative;
+
 }
 
 #play-area{
@@ -55,7 +56,7 @@ cursor:pointer;
 <body>
 
 <audio id="music">
-<source src="./Gin - Vinak.mp3" type="audio/mpeg">
+<source src="Gin - Vinak.mp3" type="audio/mpeg">
 </audio>
 
 <div id="play-area"></div>
@@ -63,9 +64,9 @@ cursor:pointer;
 <script>
 
 const music=document.getElementById("music");
-const area=document.getElementById("play-area");
 
-area.addEventListener("click",()=>{
+document.getElementById("play-area")
+.addEventListener("click",function(){
 
 if(music.paused){
 music.play();
@@ -78,5 +79,4 @@ music.pause();
 </script>
 
 </body>
-
 </html>
