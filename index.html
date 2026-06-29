@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>برای عزیزترینم</title>
 
@@ -20,43 +21,79 @@ body{
 
 background-image:url("1-anrzhy-hsthay-chyst (2).png");
 
-/* کل تصویر نمایش داده شود */
+background-repeat:no-repeat;
+background-position:center center;
+
+/* کل تصویر دیده شود */
 background-size:contain;
 
-background-repeat:no-repeat;
-background-position:center;
 background-color:black;
 
 position:relative;
 }
 
 
-/* جای پلیر روی قسمت "پیام صوتی" */
+/* ناحیه کلیک روی قسمت پیام صوتی */
 
-audio{
+#play-area{
 
 position:absolute;
 
-/* این اعداد را بسته به محل دقیق تغییر بده */
-top:62%;
+/* محل قسمت پیام صوتی */
+top:54%;
 left:50%;
 
 transform:translate(-50%,-50%);
 
-width:62%;
+width:65%;
+height:65px;
 
-opacity:.85;
+/* برای تست موقت */
+border:2px solid transparent;
+
+cursor:pointer;
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<audio controls>
+<audio id="music">
+
 <source src="Gin - Vinak.mp3" type="audio/mpeg">
+
 </audio>
 
+
+<div id="play-area"></div>
+
+
+<script>
+
+const music=document.getElementById("music");
+const playArea=document.getElementById("play-area");
+
+playArea.addEventListener("click",()=>{
+
+if(music.paused){
+
+music.play();
+
+}
+
+else{
+
+music.pause();
+
+}
+
+});
+
+</script>
+
 </body>
+
 </html>
