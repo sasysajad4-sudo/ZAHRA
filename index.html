@@ -18,31 +18,50 @@ overflow:hidden;
 }
 
 body{
-
 background-image:url("1782707100560.png");
 background-repeat:no-repeat;
 background-position:center center;
 background-size:contain;
 background-color:black;
-
 position:relative;
-
 }
 
-#play-area{
+
+/* دکمه پلی */
+
+#playBtn{
 
 position:absolute;
 
-/* بیشتر بالا و بیشتر چپ */
+/* بالا و چپ روی بخش پیام صوتی */
 top:47%;
-left:41%;
+left:28%;
 
 transform:translate(-50%,-50%);
 
-width:65%;
-height:60px;
+width:58px;
+height:58px;
+
+border-radius:50%;
+border:none;
+
+background:rgba(255,60,90,.9);
+
+color:white;
+font-size:26px;
 
 cursor:pointer;
+
+box-shadow:
+0 0 10px rgba(255,50,80,.7),
+0 0 25px rgba(255,50,80,.5);
+
+transition:.3s;
+}
+
+#playBtn:hover{
+
+transform:translate(-50%,-50%) scale(1.08);
 
 }
 
@@ -56,24 +75,31 @@ cursor:pointer;
 <source src="Gin - Vinak.mp3" type="audio/mpeg">
 </audio>
 
-<div id="play-area"></div>
+<button id="playBtn">▶</button>
 
 <script>
 
 const music=document.getElementById("music");
-const area=document.getElementById("play-area");
+const btn=document.getElementById("playBtn");
 
-area.addEventListener("click",()=>{
+btn.onclick=function(){
 
 if(music.paused){
+
 music.play();
+btn.innerHTML="❚❚";
+
 }else{
+
 music.pause();
+btn.innerHTML="▶";
+
 }
 
-});
+}
 
 </script>
 
 </body>
+
 </html>
