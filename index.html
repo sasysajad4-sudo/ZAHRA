@@ -18,109 +18,113 @@ overflow:hidden;
 }
 
 body{
-background-image:url("1782707100560.png");
+
+background:url("1782707100560.png");
+background-position:center;
 background-repeat:no-repeat;
-background-position:center center;
 background-size:contain;
 background-color:black;
+
 position:relative;
-}
-
-/* باکس ویس */
-
-#voicePlayer{
-
-position:absolute;
-
-/* بالاتر و چپ تر */
-top:43%;
-left:35%;
-
-transform:translate(-50%,-50%);
-
-display:flex;
-align-items:center;
-gap:8px;
-
-padding:7px 10px;
-
-border-radius:25px;
-
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(10px);
 
 }
 
-/* دکمه پلی کوچکتر */
+/* دکمه پلی دقیقا روی دکمه عکس */
 
 #playBtn{
 
-width:36px;
-height:36px;
+position:absolute;
 
-border:none;
+top:42%;
+left:11.8%;
+
+transform:translate(-50%,-50%);
+
+width:56px;
+height:56px;
+
 border-radius:50%;
+border:none;
 
-background:#ff4d6d;
+background:transparent;
 
 color:white;
 
-font-size:16px;
+font-size:28px;
 
 cursor:pointer;
 
-}
-
-/* موج صوتی کوچکتر */
-
-.wave{
-
-display:flex;
-align-items:flex-end;
-
-height:20px;
-
-gap:3px;
+z-index:5;
 
 }
 
-.bar{
+/* زمان چپ */
 
-width:4px;
+#current{
 
-background:white;
+position:absolute;
 
-border-radius:10px;
-
-animation:move .8s infinite alternate;
-
-}
-
-.bar:nth-child(1){height:7px;}
-.bar:nth-child(2){height:16px; animation-delay:.2s;}
-.bar:nth-child(3){height:10px; animation-delay:.4s;}
-.bar:nth-child(4){height:18px; animation-delay:.1s;}
-.bar:nth-child(5){height:12px; animation-delay:.3s;}
-.bar:nth-child(6){height:15px; animation-delay:.5s;}
-
-@keyframes move{
-
-from{
-transform:scaleY(.6);
-}
-
-to{
-transform:scaleY(1.4);
-}
-
-}
-
-#time{
+top:44.2%;
+left:15.7%;
 
 color:white;
-font-size:11px;
-min-width:35px;
+
+font-size:12px;
+
+font-family:Arial;
+
+}
+
+/* زمان راست */
+
+#duration{
+
+position:absolute;
+
+top:44.2%;
+left:54.7%;
+
+color:white;
+
+font-size:12px;
+
+font-family:Arial;
+
+}
+
+/* خط پیشرفت */
+
+#progress{
+
+position:absolute;
+
+top:44.8%;
+left:21%;
+
+width:31%;
+
+height:4px;
+
+appearance:none;
+
+background:transparent;
+
+z-index:10;
+
+}
+
+#progress::-webkit-slider-thumb{
+
+appearance:none;
+
+width:10px;
+height:10px;
+
+border-radius:50%;
+
+background:#ff6b88;
+
+cursor:pointer;
 
 }
 
@@ -131,58 +135,86 @@ min-width:35px;
 <body>
 
 <audio id="music">
-<source src="birthday.m4a" type="audio/mp4">
-</audio>
 
-<div id="voicePlayer">
+<source src="birthday.m4a" type="audio/mp4">
+
+</audio>
 
 <button id="playBtn">▶</button>
 
-<div class="wave">
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-</div>
+<div id="current">00:00</div>
 
-<div id="time">0:00</div>
+<div id="duration">00:00</div>
 
-</div>
+<input
+type="range"
+id="progress"
+value="0"
+min="0"
+max="100">
 
 <script>
 
 const music=document.getElementById("music");
-const btn=document.getElementById("playBtn");
-const time=document.getElementById("time");
+const playBtn=document.getElementById("playBtn");
+const current=document.getElementById("current");
+const duration=document.getElementById("duration");
+const progress=document.getElementById("progress");
 
-btn.onclick=function(){
+
+playBtn.onclick=()=>{
 
 if(music.paused){
+
 music.play();
-btn.innerHTML="❚❚";
+playBtn.innerHTML="❚❚";
+
 }else{
+
 music.pause();
-btn.innerHTML="▶";
+playBtn.innerHTML="▶";
+
 }
 
 }
+
+
+music.addEventListener("loadedmetadata",()=>{
+
+let m=Math.floor(music.duration/60);
+let s=Math.floor(music.duration%60);
+
+if(s<10)s="0"+s;
+
+duration.innerHTML=m+":"+s;
+
+});
+
 
 music.addEventListener("timeupdate",()=>{
 
-let minutes=Math.floor(music.currentTime/60);
-let seconds=Math.floor(music.currentTime%60);
+let m=Math.floor(music.currentTime/60);
+let s=Math.floor(music.currentTime%60);
 
-if(seconds<10){
-seconds="0"+seconds;
-}
+if(s<10)s="0"+s;
 
-time.innerHTML=minutes+":"+seconds;
+current.innerHTML=m+":"+s;
+
+progress.value=
+(music.currentTime/music.duration)*100;
+
+});
+
+
+progress.addEventListener("input",()=>{
+
+music.currentTime=
+(progress.value/100)*music.duration;
 
 });
 
 </script>
 
 </body>
+
 </html>
