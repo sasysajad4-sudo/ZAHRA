@@ -26,9 +26,10 @@ background-color:black;
 position:relative;
 }
 
-/* دکمه پلی */
 
-#playBtn{
+/* پلیر ویس */
+
+#voicePlayer{
 
 position:absolute;
 
@@ -37,30 +38,88 @@ left:41%;
 
 transform:translate(-50%,-50%);
 
-width:58px;
-height:58px;
+display:flex;
+align-items:center;
+gap:10px;
 
-border-radius:50%;
-border:none;
+padding:10px 15px;
 
-background:rgba(255,60,90,.9);
+border-radius:30px;
 
-color:white;
-font-size:26px;
+background:rgba(255,255,255,.15);
 
-cursor:pointer;
-
-box-shadow:
-0 0 10px rgba(255,50,80,.7),
-0 0 25px rgba(255,50,80,.5);
-
-transition:.3s;
+backdrop-filter:blur(8px);
 
 }
 
-#playBtn:hover{
+/* دکمه پلی */
 
-transform:translate(-50%,-50%) scale(1.08);
+#playBtn{
+
+width:45px;
+height:45px;
+
+border:none;
+border-radius:50%;
+
+background:#ff4d6d;
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+}
+
+/* موج صدا */
+
+.wave{
+
+display:flex;
+align-items:center;
+gap:3px;
+height:25px;
+
+}
+
+.bar{
+
+width:4px;
+height:10px;
+
+background:white;
+
+border-radius:10px;
+
+animation:wave 1s infinite alternate;
+
+}
+
+.bar:nth-child(2){height:18px;}
+.bar:nth-child(3){height:12px;}
+.bar:nth-child(4){height:22px;}
+.bar:nth-child(5){height:15px;}
+.bar:nth-child(6){height:20px;}
+
+@keyframes wave{
+
+from{
+transform:scaleY(.5);
+}
+
+to{
+transform:scaleY(1.5);
+}
+
+}
+
+#time{
+
+color:white;
+font-size:14px;
+
+min-width:45px;
 
 }
 
@@ -74,12 +133,30 @@ transform:translate(-50%,-50%) scale(1.08);
 <source src="birthday.m4a" type="audio/mp4">
 </audio>
 
+<div id="voicePlayer">
+
 <button id="playBtn">▶</button>
+
+<div class="wave">
+
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+
+</div>
+
+<div id="time">0:00</div>
+
+</div>
 
 <script>
 
 const music=document.getElementById("music");
 const btn=document.getElementById("playBtn");
+const time=document.getElementById("time");
 
 btn.onclick=function(){
 
@@ -96,6 +173,20 @@ btn.innerHTML="▶";
 }
 
 }
+
+music.addEventListener("timeupdate",()=>{
+
+let minutes=Math.floor(music.currentTime/60);
+
+let seconds=Math.floor(music.currentTime%60);
+
+if(seconds<10){
+seconds="0"+seconds;
+}
+
+time.innerHTML=minutes+":"+seconds;
+
+});
 
 </script>
 
