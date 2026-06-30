@@ -29,7 +29,8 @@ position:relative;
 
 }
 
-/* دکمه پلی دقیقا روی دکمه عکس */
+
+/* دکمه پلی */
 
 #playBtn{
 
@@ -49,57 +50,132 @@ border:none;
 background:transparent;
 
 color:white;
-
 font-size:28px;
 
 cursor:pointer;
 
-z-index:5;
+z-index:50;
 
 }
 
-/* زمان چپ */
+
+/* زمان فعلی */
 
 #current{
 
 position:absolute;
 
-top:44.2%;
-left:15.7%;
+top:44.4%;
+left:15.5%;
 
-color:white;
-
+color:#ffd0d8;
 font-size:12px;
 
-font-family:Arial;
+z-index:50;
 
 }
 
-/* زمان راست */
+
+/* زمان کل */
 
 #duration{
 
 position:absolute;
 
-top:44.2%;
-left:54.7%;
+top:44.4%;
+left:54.5%;
 
-color:white;
-
+color:#ffd0d8;
 font-size:12px;
 
-font-family:Arial;
+z-index:50;
 
 }
 
-/* خط پیشرفت */
+
+/* موج صدا */
+
+.wave{
+
+position:absolute;
+
+top:42%;
+left:20%;
+
+display:flex;
+align-items:center;
+
+gap:2px;
+
+z-index:50;
+
+}
+
+.bar{
+
+width:2px;
+
+background:#ff516e;
+
+border-radius:10px;
+
+box-shadow:0 0 6px #ff516e;
+
+animation:move .8s infinite alternate;
+
+}
+
+.bar:nth-child(1){height:8px}
+.bar:nth-child(2){height:15px}
+.bar:nth-child(3){height:10px}
+.bar:nth-child(4){height:18px}
+.bar:nth-child(5){height:8px}
+.bar:nth-child(6){height:13px}
+.bar:nth-child(7){height:10px}
+.bar:nth-child(8){height:20px}
+.bar:nth-child(9){height:8px}
+.bar:nth-child(10){height:16px}
+.bar:nth-child(11){height:12px}
+.bar:nth-child(12){height:19px}
+.bar:nth-child(13){height:9px}
+.bar:nth-child(14){height:14px}
+.bar:nth-child(15){height:10px}
+.bar:nth-child(16){height:18px}
+.bar:nth-child(17){height:8px}
+.bar:nth-child(18){height:15px}
+.bar:nth-child(19){height:10px}
+.bar:nth-child(20){height:12px}
+.bar:nth-child(21){height:8px}
+.bar:nth-child(22){height:16px}
+.bar:nth-child(23){height:11px}
+.bar:nth-child(24){height:18px}
+.bar:nth-child(25){height:10px}
+
+@keyframes move{
+
+from{
+
+transform:scaleY(.6);
+
+}
+
+to{
+
+transform:scaleY(1.5);
+
+}
+
+}
+
+
+/* نوار پیشرفت */
 
 #progress{
 
 position:absolute;
 
-top:44.8%;
-left:21%;
+top:45%;
+left:22%;
 
 width:31%;
 
@@ -109,7 +185,7 @@ appearance:none;
 
 background:transparent;
 
-z-index:10;
+z-index:50;
 
 }
 
@@ -122,7 +198,7 @@ height:10px;
 
 border-radius:50%;
 
-background:#ff6b88;
+background:#ff516e;
 
 cursor:pointer;
 
@@ -140,11 +216,45 @@ cursor:pointer;
 
 </audio>
 
+
 <button id="playBtn">▶</button>
+
+
+<div class="wave">
+
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+
+</div>
+
 
 <div id="current">00:00</div>
 
 <div id="duration">00:00</div>
+
 
 <input
 type="range"
@@ -153,6 +263,7 @@ value="0"
 min="0"
 max="100">
 
+
 <script>
 
 const music=document.getElementById("music");
@@ -160,7 +271,6 @@ const playBtn=document.getElementById("playBtn");
 const current=document.getElementById("current");
 const duration=document.getElementById("duration");
 const progress=document.getElementById("progress");
-
 
 playBtn.onclick=()=>{
 
@@ -216,5 +326,4 @@ music.currentTime=
 </script>
 
 </body>
-
 </html>
